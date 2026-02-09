@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chirag Tekwani - AI Video Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #fafafa;
+            --accent: #d4af37;
+            --accent-dim: #8b7355;
+            --text-primary: #fafafa;
+            --text-secondary: #a8a8a8;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link svg {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover svg {
+            transform: translateY(-2px);
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--accent) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--accent) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, var(--accent) 0%, transparent 50%);
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, 20px) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1.2s ease-out 0.2s both;
+        }
+
+        .hero .name {
+            font-weight: 600;
+            display: block;
+        }
+
+        .tagline {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+            font-weight: 200;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+        }
+
+        .tagline span {
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.6;
+            animation: fadeInUp 1.2s ease-out 0.8s both, bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        /* Categories Grid */
+        .categories {
+            position: relative;
+            padding: 8rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .category-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            min-height: 400px;
+        }
+
+        .category-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.12;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: grayscale(100%);
+            z-index: 0;
+        }
+
+        .category-card:hover .category-bg {
+            opacity: 0.25;
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 10, 0.92) 0%, 
+                rgba(10, 10, 10, 0.85) 50%,
+                rgba(212, 175, 55, 0.08) 100%);
+            opacity: 1;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15);
+        }
+
+        .category-card:hover::before {
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 10, 0.88) 0%, 
+                rgba(10, 10, 10, 0.78) 50%,
+                rgba(212, 175, 55, 0.12) 100%);
+        }
+
+        .category-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--accent-dim);
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .category-card:hover .category-number {
+            color: var(--accent);
+        }
+
+        .category-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .category-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .view-arrow {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .category-card:hover .view-arrow {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translate(5px, -5px);
+        }
+
+        .view-arrow::after {
+            content: '→';
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.02) 100%);
+            position: relative;
+            z-index: 5;
+        }
+
+        .contact-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-btn {
+            font-family: 'Poppins', sans-serif;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .contact-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-link span {
+                display: none;
+            }
+
+            .nav-link {
+                font-size: 0;
+            }
+
+            .nav-link svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 4rem 1.5rem;
+            }
+
+            .categories {
+                padding: 4rem 1.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-card {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 0.8s ease-out 1.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .loader-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-text">Chirag Tekwani</div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">CT</a>
+            <nav class="nav-links">
+                <a href="https://www.linkedin.com/in/chirag-tekwani-094609280/" target="_blank" class="nav-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="/cdn-cgi/l/email-protection#a4c7d0c1cfd3c5cacd949195e4c3c9c5cdc88ac7cbc9" class="nav-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Email
+                </a>
+                <a href="https://drive.google.com/drive/folders/11Wwi3r6h5QgDWNN4JTzKt6MoPAlu0Ze2" target="_blank" class="nav-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                        <polyline points="13 2 13 9 20 9"></polyline>
+                    </svg>
+                    Portfolio
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="bg-animation"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                <span class="name">Chirag Tekwani</span>
+            </h1>
+            <p class="tagline">Imagination Engineered. <span>Reality Redefined.</span></p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Explore</span>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="categories">
+        <h2 class="section-title">Portfolio</h2>
+        <div class="grid">
+            <!-- Product Video 1 -->
+            <a href="https://drive.google.com/file/d/1YeAPjGS8Zfq6xfbV-CKcTjU7dlphMO9g/view?usp=drive_link" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.1s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">01.1</div>
+                    <h3 class="category-title">Product Video</h3>
+                    <p class="category-description">Cinematic product showcase transforming items into objects of desire.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Product Video 2 -->
+            <a href="https://drive.google.com/file/d/1_0cXgZGYqzIROefPLBEXQ7PR97akBH0B/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.15s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">01.2</div>
+                    <h3 class="category-title">Product Video</h3>
+                    <p class="category-description">Premium product visualization with AI-powered storytelling.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Explainer Video -->
+            <a href="https://drive.google.com/file/d/16hVN8p4mKwJM66SkwjQUhmbIMfEFSwaW/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.2s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">02</div>
+                    <h3 class="category-title">Explainer Video</h3>
+                    <p class="category-description">Complex concepts simplified through engaging AI-generated visuals.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Social Media Ad -->
+            <a href="https://drive.google.com/file/d/17f10tFjsXJfY5ZC0OiPzhmL5TnBlDeOs/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.25s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">03</div>
+                    <h3 class="category-title">Social Media Ad</h3>
+                    <p class="category-description">Thumb-stopping content engineered for maximum engagement.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Corporate Video 1 -->
+            <a href="https://drive.google.com/file/d/13Ulj-s4o1WLRY_iGzzSkDx0txe-T9Dtj/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.3s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">04.1</div>
+                    <h3 class="category-title">Corporate Video</h3>
+                    <p class="category-description">Professional brand narrative with sophisticated AI cinematography.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Corporate Video 2 -->
+            <a href="https://drive.google.com/file/d/1bPW98dBTpDMuMDZsSipMLGsKGCH0mPmM/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.35s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">04.2</div>
+                    <h3 class="category-title">Corporate Video</h3>
+                    <p class="category-description">Corporate communication elevated through AI visual storytelling.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Character Animation 1 -->
+            <a href="https://drive.google.com/file/d/1f12VD7pjX-UN1e1_7QjAYYyY3PO82729/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.4s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">05.1</div>
+                    <h3 class="category-title">Character Animation</h3>
+                    <p class="category-description">Bringing personalities to life with fluid, expressive AI motion.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Character Animation 2 -->
+            <a href="https://drive.google.com/file/d/1f12VD7pjX-UN1e1_7QjAYYyY3PO82729/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.45s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">05.2</div>
+                    <h3 class="category-title">Character Animation</h3>
+                    <p class="category-description">Dynamic character storytelling through AI-driven animation.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Surrealist Luxury -->
+            <a href="https://drive.google.com/file/d/1f12VD7pjX-UN1e1_7QjAYYyY3PO82729/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.5s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">06</div>
+                    <h3 class="category-title">Surrealist Luxury Marketing</h3>
+                    <p class="category-description">Dreamlike experiences blending luxury with impossible realities.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Hyper-Realistic 3D Motion -->
+            <a href="https://drive.google.com/file/d/1Hcso98OBOVheriyW7UDqHxSbr8TuF35g/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.55s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">07</div>
+                    <h3 class="category-title">Hyper-Realistic 3D Motion</h3>
+                    <p class="category-description">Photo-real 3D animations blurring digital and filmed reality.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- Surrealist Product Storytelling -->
+            <a href="https://drive.google.com/file/d/1Hcso98OBOVheriyW7UDqHxSbr8TuF35g/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.6s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">08</div>
+                    <h3 class="category-title">Surrealist Product Storytelling</h3>
+                    <p class="category-description">Products reimagined in fantastical brand narratives.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- FOOH 1 - NEW LINK -->
+            <a href="https://drive.google.com/file/d/1HlrdNR9F8dxvHyN6ucOpotCD3t1GTSON/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.65s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">09.1</div>
+                    <h3 class="category-title">Hyper-Realistic FOOH</h3>
+                    <p class="category-description">Mind-bending campaigns making the impossible appear real.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+
+            <!-- FOOH 2 -->
+            <a href="https://drive.google.com/file/d/1rN9hB5W9oD92NyVgTJ6Av3C3_xpbiTmT/view?usp=sharing" target="_blank" class="category-card" style="animation: fadeInUp 0.8s ease-out 0.7s both;">
+                <div class="category-bg" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80');"></div>
+                <div class="category-content">
+                    <div class="category-number">09.2</div>
+                    <h3 class="category-title">Hyper-Realistic FOOH</h3>
+                    <p class="category-description">Fake-Out-Of-Home campaigns in urban landscapes.</p>
+                </div>
+                <div class="view-arrow"></div>
+            </a>
+        </div>
+                <div class="view-arrow"></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2 class="contact-title">Let's Create Something Extraordinary</h2>
+        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">Ready to transform your vision into cinematic reality? Let's collaborate.</p>
+        <div class="contact-links">
+            <a href="https://www.linkedin.com/in/chirag-tekwani-094609280/" target="_blank" class="contact-btn">LinkedIn</a>
+            <a href="/cdn-cgi/l/email-protection#492a3d2c223e282720797c78092e24282025672a2624" class="contact-btn">Email Me</a>
+            <a href="tel:+917976753936" class="contact-btn">+91 7976753936</a>
+            <a href="https://drive.google.com/drive/folders/11Wwi3r6h5QgDWNN4JTzKt6MoPAlu0Ze2" target="_blank" class="contact-btn">View All Work</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Chirag Tekwani. All Rights Reserved. | AI Video Creator & Visual Storyteller</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+            }
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+            }
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                
